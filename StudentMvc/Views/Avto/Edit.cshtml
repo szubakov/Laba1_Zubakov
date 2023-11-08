@@ -1,0 +1,50 @@
+﻿@using APIMVC.Models
+@model ModelsEditViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    <h1 class="display-6">Редактирование модели</h1>
+    <form action="/Avto/Edit/" method="post">
+        <input type="hidden" name="model.id" value="@Model?.Models?.Id" />
+        <div class="mb-3">
+            <label class="form-label">Марка</label>
+            <select name="model.markId" class="form-control">
+                <option value="">-</option>
+                @foreach (var marks in Model.Mark ?? new List<Marks>())
+                {
+                    <option value="@marks.Id" selected="@(Model.Models?.markID == marks.Id)">@marks.Name</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Название модели</label>
+            <input type="text" name="model.name" value="@Model?.Models?.Name" class="form-control" />
+        </div>
+         <div class="mb-3">
+    <label class="form-label">Привод</label>
+            <input type="text" name="model.privod" value="@Model?.Models?.privod" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Кузов</label>
+            <input type="text" name="model.kuzov" value="@Model?.Models?.kuzov" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Тип двигателя</label>
+            <input type="text" name="model.DVS" value="@Model?.Models?.DVS" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Л.С.</label>
+            <input type="text" name="model.ls" value="@Model?.Models?.ls" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Объем двигателя</label>
+            <input type="text" name="model.engine_capacity" value="@Model?.Models?.engine_capacity" class="form-control" />
+        </div>
+        
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+   
+</div>

@@ -1,0 +1,44 @@
+﻿@model MarkViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    <h1 class="display-4">Список марок автомобилей</h1>
+    <a href="/Marks/Add/" class="btn btn-primary">Добавить марку</a>
+
+    <form action="/Marks/" method="post" class = "row row-cols-lg-auto g-3 my-2 align-items-center">
+        <div class="col-12">
+            <label class="form-label">Название марки</label>
+        </div>
+        <div class="col-12">
+            <input type="text" name="name" value="@Model.Filter.Name" class="form-control" />
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Найти</button>
+           
+        </div>
+       
+    </form>
+
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
+        @foreach(var marks in Model.Marks)
+        {
+            <tr>
+                <td>@marks.Id</td>
+                <td>@marks.Name</td>
+                <td>
+                    <a href="/Marks/Edit/@marks.Id">Редактировать</a>
+                    <a href="/Marks/Delete/@marks.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </table>
+   
+</div>

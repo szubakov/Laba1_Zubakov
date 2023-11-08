@@ -1,0 +1,49 @@
+﻿@model List<Marks>
+
+@{
+    var title = "Добавление модели";
+    ViewData["Title"] = title;
+}
+
+<div class="text-left">
+    <h1 class="display-6">@title</h1>
+    <form action="/Avto/Add/" method="post">
+        <div class="mb-3">
+            <label class="form-label">Марка</label>
+            <select name="models.markId" class="form-control">
+                <option value="">-</option>
+                @foreach(var md in Model)
+                {
+                    <option value="@md.Id">@md.Name</option>
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Название модели</label>
+            <input type="text" name="models.Name" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Привод</label>
+            <input type="text" name="models.privod" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Кузов</label>
+            <input type="text" name="models.kuzov" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Тип двигателя</label>
+            <input type="text" name="models.DVS" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Лошадиные силы</label>
+            <input type="text" name="models.ls" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Объем двигателя</label>
+            <input type="text" name="models.engine_capacity" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+   
+</div>

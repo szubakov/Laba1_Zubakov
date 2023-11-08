@@ -1,0 +1,82 @@
+﻿@model ModelsViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    <h1 class="display-4">Список моделей</h1>
+    <a href="/Avto/Add/" class="btn btn-primary">Добавить модель </a>
+
+    <form action="/Avto/" method="post" class="row row-cols-lg-auto g-3 my-2 align-items-center">
+        <div class="col-12">
+            <label class="form-label">Название модели</label>
+        </div>
+        <div class="col-12">
+            <input type="text" name="Name" value="@Model.Filter.Name" class="form-control" />
+        </div>
+         <div class="col-12">
+            <label class="form-label">Привод</label>
+        </div>
+        <div class="col-12">
+            <input type="text" name="privod" value="@Model.Filter.privod" class="form-control" />
+        </div>
+        <div class="col-12">
+            <label class="form-label">Кузов</label>
+        </div>
+        <div class="col-12">
+            <input type="text" name="kuzov" value="@Model.Filter.kuzov" class="form-control" />
+        </div>
+        <div class="col-12">
+            <label class="form-label">Марка</label>
+        </div>
+        <div class="col-12">
+            <select name="markid" class="form-control">
+                <option value="">-</option>
+                @foreach (var marks in Model.Marks ?? new List<Marks>())
+                {
+                    <option value="@marks.Id" selected="@(Model.Filter.markid == marks.Id)">@marks.Name</option>
+                }
+            </select>
+            
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Найти</button>
+
+        </div>
+
+
+    </form>
+
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Марка</th>
+            <th>Модель</th>
+            <th>Привод</th>
+            <th>Кузов</th>
+            <th>Тип двигателя</th>
+            <th>Л.С.</th>
+            <th>Объем двигателя</th>
+            <th>Действия</th>
+        </tr>
+        @foreach(var mark in Model.Models)
+        {
+            <tr>
+                <td>@mark.Id</td>
+                <td>@Model.Marks.FirstOrDefault(x => x.Id == mark.markID)?.Name</td>
+                <td>@mark.Name</td>
+                <td>@mark.privod</td>
+                <td>@mark.kuzov</td>
+                <td>@mark.DVS</td>
+                <td>@mark.ls</td>
+                <td>@mark.engine_capacity</td>
+                <td>
+                    <a href="/Avto/Edit/@mark.Id">Редактировать</a>
+                    <a href="/Avto/Delete/@mark.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </table>
+   
+</div>

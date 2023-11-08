@@ -1,0 +1,16 @@
+﻿@model ModelsGetAllDto
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    <h1 class="display-4">Добавление новой марки</h1>
+
+    <form action="/Marks/Add/" method="post">
+        <div class="mb-3">
+            <label  class="form-label">Название марки</label>
+            <input type="text" name="name" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+</div>
